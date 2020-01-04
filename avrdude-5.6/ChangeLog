@@ -1,0 +1,158 @@
+2009-02-27  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	* configure.ac: Prepare for releasing version 5.6.
+
+2009-02-27  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	Submitted by Ed Okerson:
+	* jtagmkII.c (jtagmkII_read_byte): Fix signature reading of
+	Xmega.
+
+2009-02-26  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	Submitted by Mikael Hermansson:
+	* avrdude.conf.in (ATxmega256A3): new device.
+	* stk500v2 (stk500v2_initialize): Enable the AVRISPmkII as a
+	PDI-capable device for ATxmega parts.
+
+2009-02-25  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	Submitted by Lars Immisch:
+	patch #6750: Arduino support - new programmer-id
+	* arduino.c: New file, inherits stk500.c.
+	* arduino.h: New file.
+	* Makefile.am: Add arduino.c and arduino.h.
+	* config_gram.y: Add arduino keyword.
+	* lexer.l: (Ditto.)
+	* avrdude.conf.in: (Ditto.)
+	* avrdude.1: Document the new programmer type.
+	* doc/avrdude.texi: (Ditto.)
+
+2009-02-25  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	* stk500v2.c: Turn all non-const static data into instance data.
+
+2009-02-25  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	* Makefile.am: Move term.[ch] from the library into the CLI
+	application section, as it is not useful for anything else but
+	the CLI frontend.
+
+2009-02-25  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	* avrdude.conf.in (ATmega1284P): new device.
+
+2009-02-23  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	More fixes for Solaris, including fixes for the Sunpro compiler:
+	* avr.h: Remove stray semicolon.
+	* configure.ac: Add check for predefined types uint_t and ulong_t.
+	* confwin.c: Include "avrdude.h" on top to avoid empty translation
+	unit warning.
+	* ppwin.c: (Ditto.)
+	* ser_win32.c: (Ditto.)
+	* serbb_win32.c: (Ditto.)
+	* jtagmkII.c (jtagmkII_recv): remove unreachable "return".
+	* stk500.c (stk500_initialize): (Ditto.)
+	* par.c: Test for both, __sun__ and __sun to see whether we are
+	being compiled on Solaris.
+	* ppi.c: (Ditto.)
+	* stk500v2.c: Implement the DEBUG and DEBUGRECV macros in a way
+	that is compatible with the ISO C99 standard.
+	* usbtiny.c: Only typedef uint_t and ulong_t if they have not
+	been found already by the autoconf checks.
+
+2009-02-23  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	bug #22204: Solaris10/11 Undefiniertes Symbol gethostbyname socket
+	connect
+	* configure.ac: Add checks for gethostent() and socket().
+	While being here, remove some old cruft left from ancient days.
+
+2009-02-22  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	* lexer.l: Bump the %p size so AT&T lex will continue to work.
+
+2009-02-19  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	(Partially) submitted by John Voltz:
+	bug #20004: AVRDUDE update (-U) operations do not close files
+	* fileio.c (fmt_autodetect, fileio): fclose() files.
+
+2009-02-18  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	* usbtiny.c: Replace all but one (very unlikely to trigger) exit(1)
+	by return -1.
+
+2009-02-18  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	Submitted by Dick Streefland:
+	patch #6749: make reading from the USBtinyISP programmer more robust
+	* usbtiny.c: Add code to retry failed communication attempts.
+
+2009-02-17  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	Submitted by Nick Hibma:
+	bug #22271: usb_reset in usb_libusb.c not necessary in FreeBSD 6.x
+	* usb_libusb.c (usbdev_close): Do not call usb_reset() on FreeBSD.
+	It is not necessary there.
+
+2009-02-17  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	Submitted by Andrew O. Shadoura:
+	bug #25156: add direct SPI transfer mode
+	* bitbang.c: Implement direct SPI transfers.
+	* bitbang.h: (Ditto.)
+	* par.c: (Ditto.)
+	* pgm.c: (Ditto.)
+	* pgm.h: (Ditto.)
+	* term.c: Add the "spi" and "pgm" commands.
+	* avrdude.1: Document the changes.
+	* doc/avrdude.texi: (Ditto.)
+
+2009-02-17  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	Submitted by Limor ("Lady Ada"):
+	bug #24749: add support for '328p
+	* avrdude.conf.in (ATmega328P): new device support.
+
+2009-02-17  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	Submitted by "Womo":
+	bug #25241: AT90USB162, AT90USB82 device support patch for avrdude-5.5
+	(also: bug #21745: AT90USBxx2 support)
+	* avrdude.conf.in (AT90USB162, AT90USB82): new device support.
+
+2009-02-17  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	Submitted by Evangelos Arkalis:
+	patch #6069: Atmel AT89ISP Cable
+	* avrdude.conf.in (89isp): new programmer support.
+
+2009-02-16  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	Submitted by Bob Paddock:
+	patch #6748: ATTiny88 Config
+	* avrdude.conf.in (ATtiny88): new device support.
+
+2009-02-16  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	Submitted by Mark Litwack:
+	patch #6261: avrdude won't use dragon/debugwire to write a file
+	to eeprom
+	* jtagmkII.c (jtagmkII_paged_write): when in debugWire mode,
+	implement a paged write to EEPROM as a series of byte writes.
+
+2009-02-16  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	Submitted by Janos Sallai:
+	patch #6542: paged_load fails on the MIB510 programming board
+	* stk500.c: Add a workaround for the different signon sequence on
+	MIB510 programmers.
+
+2009-02-05  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
+
+	* avrdude.conf.in: Add the ATmega128RFA1.
+	* avrdude.1: document the addition of ATmega128RFA1.
+	* doc/avrdude.texi: (Ditto.)
+
