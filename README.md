@@ -1,4 +1,4 @@
-#INSTALACION DEL PLUGIN DE AVR PARA ECLIPSE PARA PROGRAMAR MCUs DE ATMEL
+# INSTALACION DEL PLUGIN DE AVR PARA ECLIPSE PARA PROGRAMAR MCUs DE ATMEL
 
 1. Correr en la terminal:
 
@@ -20,7 +20,20 @@ Luego volver a la carpeta avrdude-5.6, correr 'make clean' antes de repetir los 
 
 3. Una vez instalado Eclipse, ir a la ventana 'Help -> Install new software'. Click en 'Add' y copiar http://avr-eclipse.sourceforge.net/updatesite en 'Location'. Agregar y dar todos los permisos que pida al instalar. Eclipse va a pedir reiniciar el software para que todo este en orden.
 
-#CONFIGURACION DE AVRDUDE EN ECLIPSE
+4. Escribir en la terminal:
+	
+	- cd /etc/udev/rules.d
+	- sudo touch usbasp.rules
+	- sudo nano usbasp.rules
+
+5. Pegar el siguiente contenido en la terminal:
+
+#SUBSYSTEM=="usb", ATTR{product}=="USBasp", ATTR{idProduct}=="05dc", ATTRS{idVendor}=="16c0", MODE="0666"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="05dc", GROUP="users", MODE="0666" 
+
+6. Apretar 'Ctrl + X' y guardar el archivo.
+
+# CONFIGURACION DE AVRDUDE EN ECLIPSE
 
 1. Crear un nuevo proyecto en C eligiendo 'AVR Cross Target Application' y elegir el microcontrolador que se este usando.
 
