@@ -37,6 +37,7 @@ Luego volver a la carpeta avrdude-5.6, correr `make clean` antes de repetir los 
 4. Pegar el siguiente contenido:
 
 **#SUBSYSTEM=="usb", ATTR{product}=="USBasp", ATTR{idProduct}=="05dc", ATTRS{idVendor}=="16c0", MODE="0666"**
+
 **SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="05dc", GROUP="users", MODE="0666"** 
 
 Apretar 'Ctrl + X' y guardar el archivo.
@@ -50,9 +51,13 @@ Apretar 'Ctrl + X' y guardar el archivo.
 3. Luego de que se termine de instalar, crear una acceso desde el escritorio corriendo en la terminal `nano ~/Desktop/eclipse.desktop` y copiando el siguiente contenido:
 
 [Desktop Entry]
+
 Name=Eclipse
+
 Exec=eclipse
+
 Icon=/usr/local/share/icons/hicolor/128x128/eclipse.jpg
+
 Type=Application
 
 4. Apretar 'Ctrl + X' y guardar el archivo.
