@@ -2,7 +2,7 @@
 
 1. Correr en la terminal:
 
-	`sudo apt-get install gcc-avr binutils-avr gdb-avr avr-libc`
+	`sudo apt-get install gcc-avr binutils-avr gdb-avr avr-libc libelf-dev libftdi-dev libftdi1-dev`
 
 2. Ir a la carpeta avrdude-5.6 en el repositorio y correr en la terminal:
 
